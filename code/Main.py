@@ -94,4 +94,3 @@ if __name__ == '__main__':
         raise Exception('Incorrect number of arguments passed')
     log.info("Argument List: " + str(sys.argv))
     log.info("Number of arguments: " + str(len(sys.argv)) + " arguments.")
-    main(sys.argv[1:])
