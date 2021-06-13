@@ -1,3 +1,13 @@
+"""This script process the data sets for kommatiparausecase  and does below transforamtions
+1)read  2 different data sets to spark data frames one has client data ther has financial client financial information
+2) Filter out client data set for Netherlands and United Kingdom countries
+3)Join filtered client data with financial data sets to get client financial details for Netherlands and United Kingdom
+4)Rename the columns for user readability and store output data to output location
+
+@author: ashokkumar goa
+"""
+
+
 import sys
 import logging
 import pandas as pd
@@ -55,8 +65,9 @@ def main(argv):
     log.info(f'function name: {FUNCTION_NAME}')
     dateset1 = argv[0]
     dateset2 = argv[1]
-    # country_list = (argv[2])
-    country_list = ['Netherlands', 'United Kingdom']
+    country_list = list(argv[2].split(','))
+    print(country_list)
+    # country_list = ['Netherlands', 'United Kingdom']
 
     log.info('Reading clients data:')
     log.info('Filtering dataset based on the country list received:')
@@ -88,9 +99,9 @@ def main(argv):
 
 if __name__ == '__main__':
 
-    """ main function call  which requires 3 arguments inputdatasetpath1, inputdatasetpath2, countrylist"""
+    """ main function call  which requires 3 arguments inputdatasetpath1, inputdatasetpath2, countrylist """
     # note: *** here args count is 3, the first is by default the program name.
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         raise Exception('Incorrect number of arguments passed')
     log.info("Argument List: " + str(sys.argv))
     log.info("Number of arguments: " + str(len(sys.argv)) + " arguments.")
